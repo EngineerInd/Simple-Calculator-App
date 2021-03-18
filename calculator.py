@@ -1,91 +1,96 @@
-# Simple Calculator
-# by TokyoEdtech
-# Python 3.8 using Geany Editor
-# Ubuntu Linux (Mac and Windows Compatible)
-# Topics: tkinter, grid geometry manager, eval, try/except, lambda
+from tkinter import*
 
-import tkinter
+me=Tk()
+me.geometry("354x460")
+me.title("CALCULATOR")
+melabel = Label(me,text="CALCULATOR",bg='dark gray',font=("Times",30,'bold'))
+melabel.pack(side=TOP)
+me.config(background='Dark gray')
 
-root = tkinter.Tk()
-root.title("Calculator")
+textin=StringVar()
+operator=""
 
-expression = ""
+def clickbut(number):   #lambda:clickbut(1)
+     global operator
+     operator=operator+str(number)
+     textin.set(operator)
 
-# Create functions
-def add(value):
-    global expression
-    expression += value
-    label_result.config(text=expression)
-    
-def clear():
-    global expression
-    expression = ""
-    label_result.config(text=expression)
-    
-def calculate():
-    global expression
-    result = ""
-    if expression != "":
-        try:
-            result = eval(expression)
-        except:
-            result = "error"
-            expression = ""
-    label_result.config(text=result)
-            
-# Create GUI
-label_result = tkinter.Label(root, text="")
-label_result.grid(row=0, column=0, columnspan=4)
+def equlbut():
+     global operator
+     add=str(eval(operator))
+     textin.set(add)
+     operator=''
+def equlbut():
+     global operator
+     sub=str(eval(operator))
+     textin.set(sub)
+     operator=''     
+def equlbut():
+     global operator
+     mul=str(eval(operator))
+     textin.set(mul)
+     operator=''
+def equlbut():
+     global operator
+     div=str(eval(operator))
+     textin.set(div)
+     operator=''    
 
-button_1 = tkinter.Button(root, text="1", command=lambda: add("1"))
-button_1.grid(row=1, column=0)
+def clrbut():
+     textin.set('')
 
-button_2 = tkinter.Button(root, text="2", command=lambda: add("2"))
-button_2.grid(row=1, column=1)
+     
+metext=Entry(me,font=("Courier New",12,'bold'),textvar=textin,width=25,bd=5,bg='powder blue')
+metext.pack()
 
-button_3 = tkinter.Button(root, text="3", command=lambda: add("3"))
-button_3.grid(row=1, column=2)
+but1=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(1),text="1",font=("Courier New",16,'bold'))
+but1.place(x=10,y=100)
 
-button_divide = tkinter.Button(root, text="/", command=lambda: add("/"))
-button_divide.grid(row=1, column=3)
+but2=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(2),text="2",font=("Courier New",16,'bold'))
+but2.place(x=10,y=170)
 
-button_4 = tkinter.Button(root, text="4", command=lambda: add("4"))
-button_4.grid(row=2, column=0)
+but3=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(3),text="3",font=("Courier New",16,'bold'))
+but3.place(x=10,y=240)
 
-button_5 = tkinter.Button(root, text="5", command=lambda: add("5"))
-button_5.grid(row=2, column=1)
+but4=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(4),text="4",font=("Courier New",16,'bold'))
+but4.place(x=75,y=100)
 
-button_6 = tkinter.Button(root, text="6", command=lambda: add("6"))
-button_6.grid(row=2, column=2)
+but5=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(5),text="5",font=("Courier New",16,'bold'))
+but5.place(x=75,y=170)
 
-button_multiply = tkinter.Button(root, text="*", command=lambda: add("*"))
-button_multiply.grid(row=2, column=3)
+but6=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(6),text="6",font=("Courier New",16,'bold'))
+but6.place(x=75,y=240)
 
-button_7 = tkinter.Button(root, text="7", command=lambda: add("7"))
-button_7.grid(row=3, column=0)
+but7=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(7),text="7",font=("Courier New",16,'bold'))
+but7.place(x=140,y=100)
 
-button_8 = tkinter.Button(root, text="8", command=lambda: add("8"))
-button_8.grid(row=3, column=1)
+but8=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(8),text="8",font=("Courier New",16,'bold'))
+but8.place(x=140,y=170)
 
-button_9 = tkinter.Button(root, text="9", command=lambda: add("9"))
-button_9.grid(row=3, column=2)
+but9=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(9),text="9",font=("Courier New",16,'bold'))
+but9.place(x=140,y=240)
 
-button_subtract = tkinter.Button(root, text="-", command=lambda: add("-"))
-button_subtract.grid(row=3, column=3)
+but0=Button(me,padx=14,pady=14,bd=4,bg='white',command=lambda:clickbut(0),text="0",font=("Courier New",16,'bold'))
+but0.place(x=10,y=310)
 
-button_clear = tkinter.Button(root, text="C", command=lambda: clear())
-button_clear.grid(row=4, column=0)
+butdot=Button(me,padx=47,pady=14,bd=4,bg='white',command=lambda:clickbut("."),text=".",font=("Courier New",16,'bold'))
+butdot.place(x=75,y=310)
 
-button_0 = tkinter.Button(root, text="0", command=lambda: add("0"))
-button_0.grid(row=4, column=1)
+butpl=Button(me,padx=14,pady=14,bd=4,bg='white',text="+",command=lambda:clickbut("+"),font=("Courier New",16,'bold'))
+butpl.place(x=205,y=100)
 
-button_dot = tkinter.Button(root, text=".", command=lambda: add("."))
-button_dot.grid(row=4, column=2)
+butsub=Button(me,padx=14,pady=14,bd=4,bg='white',text="-",command=lambda:clickbut("-"),font=("Courier New",16,'bold'))
+butsub.place(x=205,y=170)
 
-button_add = tkinter.Button(root, text="+", command=lambda: add("+"))
-button_add.grid(row=4, column=3)
+butml=Button(me,padx=14,pady=14,bd=4,bg='white',text="*",command=lambda:clickbut("*"),font=("Courier New",16,'bold'))
+butml.place(x=205,y=240)
 
-button_equals = tkinter.Button(root, text="=", width=16, command=lambda: calculate())
-button_equals.grid(row=5, column=0, columnspan=4)
+butdiv=Button(me,padx=14,pady=14,bd=4,bg='white',text="/",command=lambda:clickbut("/"),font=("Courier New",16,'bold'))
+butdiv.place(x=205,y=310)
 
-root.mainloop()
+butclear=Button(me,padx=14,pady=119,bd=4,bg='white',text="CE",command=clrbut,font=("Courier New",16,'bold'))
+butclear.place(x=270,y=100)
+
+butequal=Button(me,padx=151,pady=14,bd=4,bg='white',command=equlbut,text="=",font=("Courier New",16,'bold'))
+butequal.place(x=10,y=380)
+me.mainloop()
